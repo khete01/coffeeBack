@@ -1,30 +1,57 @@
-// import { Request, Response } from "express";
 import type { NextApiRequest, NextApiResponse } from "next";
 import ProductModel from "../../models/product";
-import { Product } from "../utils/types";
-import { connnectDb } from "../utils/db-connect";
+import { connectDb } from "../utils/db-connect";
 
-connnectDb();
-export const getCoffees = async (): Promise<Product[]> => {
+connectDb();
+
+export const getProducts = async () => {
   try {
-    const coffees = await ProductModel.find({});
-    return coffees;
+    const products = await ProductModel.find({});
+    return products;
   } catch (error) {
-    console.error("Error fetching coffees:", error);
+    console.log("Error fetching products:", error);
     throw error;
   }
 };
 
-export const createCoffees = async (
+export const createProduct = async (
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> => {
+) => {
   try {
     const data = req.body;
-    const coffee = await ProductModel.create(data);
-    res.status(200).json(coffee);
+    const product = await ProductModel.create(data);
+    res.status(200).json(product);
   } catch (error) {
-    console.error("Error creating coffee:", error);
-    res.status(500).json(error);
+    console.log("Error creating product:", error);
+    res.status(500).json({ error: "Error creating product" });
+  }
+};
+export const updateProducts = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  try {
+    const { id } = req.query;
+    const data = req.body;
+    const updatedProduct = await ProductModel.findByIdAndUpdate(id, data, {
+      new: true,
+    });
+    res.status(200).send(updatedProduct);
+  } catch (error) {
+    console.log("Error updating product");
+  }
+};
+export const deleteProduct = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
+  try {
+    const { id } = req.query;
+    const data = req.body;
+    const deletedProduct = await ProductModel.findByIdAndDelete(id);
+    res.status(200).send(deletedProduct);
+  } catch (error) {
+    console.log("Error deleting product");
   }
 };
