@@ -42,16 +42,34 @@ export const updateProducts = async (
     console.log("Error updating product");
   }
 };
+// export const deleteProduct = async (
+//   req: NextApiRequest,
+//   res: NextApiResponse
+// ) => {
+//   try {
+//     const { id } = req.query;
+//     const data = req.body;
+//     const deletedProduct = await ProductModel.findByIdAndDelete(id);
+//     res.status(200).send(deletedProduct);
+//   } catch (error) {
+//     console.log("Error deleting product");
+//   }
+// };
 export const deleteProduct = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
   try {
     const { id } = req.query;
-    const data = req.body;
-    const deletedProduct = await ProductModel.findByIdAndDelete(id);
-    res.status(200).send(deletedProduct);
+    const product = await ProductModel.findByIdAndDelete(id);
+
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    console.log("Error deleting product");
+    console.log("Error deleting product:", error);
+    res.status(500).json({ error: "Error deleting product" });
   }
 };
