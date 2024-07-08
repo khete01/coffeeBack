@@ -1,8 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import ProductModel from "../../models/product";
-import { connectDb } from "../utils/db-connect";
-
-connectDb();
 
 export const getProducts = async () => {
   try {
@@ -27,7 +24,8 @@ export const createProduct = async (
     res.status(500).json({ error: "Error creating product" });
   }
 };
-export const updateProducts = async (
+
+export const updateProduct = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
@@ -37,37 +35,20 @@ export const updateProducts = async (
     const updatedProduct = await ProductModel.findByIdAndUpdate(id, data, {
       new: true,
     });
-    res.status(200).send(updatedProduct);
+    res.status(200).json(updatedProduct);
   } catch (error) {
-    console.log("Error updating product");
+    console.log("Error updating product:", error);
+    res.status(500).json({ error: "Error updating product" });
   }
 };
-// export const deleteProduct = async (
-//   req: NextApiRequest,
-//   res: NextApiResponse
-// ) => {
-//   try {
-//     const { id } = req.query;
-//     const data = req.body;
-//     const deletedProduct = await ProductModel.findByIdAndDelete(id);
-//     res.status(200).send(deletedProduct);
-//   } catch (error) {
-//     console.log("Error deleting product");
-//   }
-// };
 export const deleteProduct = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
   try {
     const { id } = req.query;
-    const product = await ProductModel.findByIdAndDelete(id);
-
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" });
-    }
-
-    res.status(200).json({ message: "Product deleted successfully" });
+    const deletedProduct = await ProductModel.findByIdAndDelete(id);
+    res.status(200).send(deletedProduct);
   } catch (error) {
     console.log("Error deleting product:", error);
     res.status(500).json({ error: "Error deleting product" });

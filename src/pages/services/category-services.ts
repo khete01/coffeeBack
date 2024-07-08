@@ -1,9 +1,6 @@
 //category tai hamaaraltai buh function
 import type { NextApiRequest, NextApiResponse } from "next";
 import CategoryModel from "@/models/category";
-import { connectDb } from "../utils/db-connect";
-
-connectDb();
 
 export const getCategories = async () => {
   try {

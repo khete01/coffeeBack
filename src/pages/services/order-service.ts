@@ -1,10 +1,5 @@
-//order tai hamaaraltai buh function
-//ordertai hamaaraltai buh function
 import type { NextApiRequest, NextApiResponse } from "next";
-import OrderModel from "@/models/order"
-import { connectDb } from "../utils/db-connect";
-
-connectDb();
+import OrderModel from "@/models/order";
 
 export const getOrders = async () => {
   try {

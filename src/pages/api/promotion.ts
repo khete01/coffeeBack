@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import {
-  getUsers,
-  createUser,
-  updateUser,
-  deleteUser,
-} from "../services/user-services";
+  getPromotions,
+  createPromotion,
+  updatePromotion,
+  deletePromotion,
+} from "../services/promotion-services";
 import { connectDb } from "../utils/db-connect";
 export default async function handler(
   req: NextApiRequest,
@@ -14,20 +14,20 @@ export default async function handler(
   switch (req.method) {
     case "GET":
       try {
-        const user = await getUsers();
-        res.status(200).json(user);
+        const promotions = await getPromotions();
+        res.status(200).json(promotions);
       } catch (error) {
         res.status(500).json(error);
       }
       break;
     case "POST":
-      await createUser(req, res);
+      await createPromotion(req, res);
       break;
     case "PUT":
-      await updateUser(req, res);
+      await updatePromotion(req, res);
       break;
     case "DELETE":
-      await deleteUser(req, res);
+      await deletePromotion(req, res);
       break;
     default:
       res.setHeader("Allow", ["GET", "POST", "PUT", "DELETE"]);

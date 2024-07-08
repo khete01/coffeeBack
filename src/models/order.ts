@@ -1,16 +1,16 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 import { Order } from "@/pages/utils/types";
 
 const OrderSchema = new Schema<Order>({
-  id: { type: String },
+  id: { type: String, required: true },
   products: [
     {
-      productId: { type: String },
+      productId: { type: String, required: true },
       size: { type: String, enum: ["small", "medium", "large"] },
-      quantity: { type: Number },
+      quantity: { type: Number, required: true },
     },
   ],
-  user: { type: String },
+  user: { type: String, required: true },
   date: { type: Date, default: Date.now },
   state: {
     type: String,
@@ -20,6 +20,6 @@ const OrderSchema = new Schema<Order>({
   promotionCode: { type: String, default: null },
 });
 
-const OrderModel = mongoose.model<Order>("Order", OrderSchema);
-
+const OrderModel: Model<Order> =
+  mongoose.models.Order || mongoose.model<Order>("Order", OrderSchema);
 export default OrderModel;

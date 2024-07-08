@@ -1,12 +1,12 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 import { Category } from "@/pages/utils/types";
 
 const CategorySchema = new Schema<Category>({
-  id: String,
-  name: String,
-  
+  id: { type: String, required: true },
+  name: { type: String, required: true },
 });
 
-const CategoryModel = mongoose.model<Category>("Category", CategorySchema);
-
+const CategoryModel: Model<Category> =
+  mongoose.models.Category ||
+  mongoose.model<Category>("Category", CategorySchema);
 export default CategoryModel;
