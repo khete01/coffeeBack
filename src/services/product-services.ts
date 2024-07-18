@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import ProductModel from "../../models/product";
+import ProductModel from "../models/product";
 
 export const getProducts = async () => {
   try {

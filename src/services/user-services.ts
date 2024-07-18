@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import UserModel from "../../models/user";
+import UserModel from "../models/user";
 
 export const getUsers = async () => {
   try {

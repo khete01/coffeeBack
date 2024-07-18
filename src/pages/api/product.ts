@@ -4,7 +4,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-} from "../services/product-services";
+} from "../../services/product-services";
 import { connectDb } from "../../utils/db-connect";
 export default async function handler(
   req: NextApiRequest,

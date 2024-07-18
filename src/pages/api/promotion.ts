@@ -4,7 +4,7 @@ import {
   createPromotion,
   updatePromotion,
   deletePromotion,
-} from "../services/promotion-services";
+} from "../../services/promotion-services";
 import { connectDb } from "../../utils/db-connect";
 export default async function handler(
   req: NextApiRequest,

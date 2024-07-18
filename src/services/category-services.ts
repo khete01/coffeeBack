@@ -1,6 +1,6 @@
 //category tai hamaaraltai buh function
 import type { NextApiRequest, NextApiResponse } from "next";
-import CategoryModel from "@/models/category";
+import CategoryModel from "../models/category";
 
 export const getCategories = async () => {
   try {

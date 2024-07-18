@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import PromotionModel from "../../models/promotion";
+import PromotionModel from "../models/promotion";
 
 export const getPromotions = async () => {
   try {
