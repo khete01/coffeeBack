@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from "mongoose";
-import { Promotion } from "@/pages/utils/types";
+import { Promotion } from "@/utils/types";
 
 const PromotionSchema = new Schema<Promotion>({
   productId: String,

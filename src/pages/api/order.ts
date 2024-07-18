@@ -5,7 +5,7 @@ import {
   updateOrder,
   deleteOrder,
 } from "../services/order-service";
-import { connectDb } from "../utils/db-connect";
+import { connectDb } from "../../utils/db-connect";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

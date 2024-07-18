@@ -5,7 +5,7 @@ import {
   updateCategory,
   deleteCategory,
 } from "../services/category-services";
-import { connectDb } from "../utils/db-connect";
+import { connectDb } from "../../utils/db-connect";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse

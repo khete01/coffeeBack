@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from "mongoose";
-import { Category } from "@/pages/utils/types";
+import { Category } from "@/utils/types";
 
 const CategorySchema = new Schema<Category>({
   id: { type: String, required: true },

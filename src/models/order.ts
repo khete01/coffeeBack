@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from "mongoose";
-import { Order } from "@/pages/utils/types";
+import { Order } from "@/utils/types";
 
 const OrderSchema = new Schema<Order>({
   id: { type: String, required: true },
