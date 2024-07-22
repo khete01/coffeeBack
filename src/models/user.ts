@@ -5,15 +5,15 @@ const UserSchema = new Schema<User>({
   fullName: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  avatar: { type: String, required: true },
-  address: { type: String, required: true },
+  avatar: { type: String },
+  address: { type: String },
   paymentInfo: {
-    cardHolder: { type: String, required: true },
-    cardNumber: { type: String, required: true },
-    expirationDate: { type: String, required: true },
-    cvv: { type: String, required: true },
+    cardHolder: { type: String },
+    cardNumber: { type: String },
+    expirationDate: { type: String },
+    cvv: { type: String },
   },
-  favorates: [{ type: String, required: true }],
+  favorites: [{ type: String }],
 });
 
 const UserModel: Model<User> =
