@@ -13,7 +13,7 @@ const UserSchema = new Schema<User>({
     expirationDate: { type: String },
     cvv: { type: String },
   },
-  favorites: [{ type: String }],
+  favorates: [{ type: String }],
 });
 
 const UserModel: Model<User> =
