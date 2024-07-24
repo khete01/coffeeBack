@@ -4,6 +4,7 @@ import {
   createUser,
   updateUser,
   deleteUser,
+  loginUser,
 } from "../../services/user-services";
 import { connectDb } from "../../utils/db-connect";
 export default async function handler(
@@ -22,6 +23,9 @@ export default async function handler(
       break;
     case "POST":
       await createUser(req, res);
+      break;
+    case "POST":
+      await loginUser(req, res);
       break;
     case "PUT":
       await updateUser(req, res);

@@ -11,6 +11,25 @@ export const getUsers = async () => {
   }
 };
 
+export const loginUser = async (req: NextApiRequest, res: NextApiResponse) => {
+  const data = req.body;
+  console.log(data);
+
+  try {
+    const user = await UserModel.findOne({ email: data.email });
+
+    if (user) {
+      const id = user.id;
+      res.status(200).send(id);
+      console.log(id);
+    } else {
+      res.status(404).send("User not found");
+    }
+  } catch (error) {
+    res.status(500).send("Internal server error");
+    console.error(error);
+  }
+};
 export const createUser = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const data = req.body;
